@@ -1,24 +1,22 @@
 ## After clone the blog repository
 
-install package from package.json
-
-```
-npm install
-```
-
 update submodule theme
 
 ```
 git submodule update --init --recursive
 ```
 
-at themes/[theme]
+install package from package.json at root dir and themes/[theme]
 
 ```
 npm install
 ```
 
-## Add in `package.json`
+```
+npm install
+```
+
+## Add in package.json
 
 ```
 "hexo-generator-cname": "^0.3.0",
