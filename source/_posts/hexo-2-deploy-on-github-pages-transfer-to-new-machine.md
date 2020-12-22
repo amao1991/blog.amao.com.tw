@@ -1,11 +1,10 @@
 ---
-title: "Note #4: Hexo deploy on Github Pages which transfers to new machine"
+title: "Hexo #2: deploy on Github Pages which transfers to new machine"
 date: 2020-03-17 16:54:24
 tags:
-  - note
   - github
   - hexo
-categories: Note
+categories: Hexo
 ---
 
 The website is deploy on Github Pages by Hexo.
@@ -24,7 +23,7 @@ $ npm install hexo-deployer-git --save
 
 confirm the theme which be used is under the theme folder
 
-I use [icarus](https://github.com/ppoffice/hexo-theme-icarus) theme and the theme/icarus folder is empty
+I use [icarus](https://github.com/ppoffice/hexo-theme-icarus) theme but the theme/icarus folder is empty
 
 so use the command as below:
 

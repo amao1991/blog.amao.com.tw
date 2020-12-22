@@ -1,5 +1,5 @@
 ---
-title: "Note #5: 用現實情境來解釋何謂 Single sign-on (SSO)"
+title: "Note #4: 用現實情境來解釋何謂 Single sign-on (SSO)"
 date: 2020-12-16 23:56:22
 tags:
 - note

@@ -12,10 +12,6 @@ install package from package.json at root dir and themes/[theme]
 npm install
 ```
 
-```
-npm install
-```
-
 ## Add in package.json
 
 ```

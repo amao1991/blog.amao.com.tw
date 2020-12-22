@@ -1,10 +1,10 @@
 ---
-title: "Git #2: Hexo - Spawn failed"
+title: "Hexo #1: Spawn failed"
 date: 2019-12-31 16:21:58
 tags:
-- git
 - hexo
-categories: Git
+- github
+categories: Hexo
 ---
 
 幾個月沒上來要發個文章他就爆了，FINE。
