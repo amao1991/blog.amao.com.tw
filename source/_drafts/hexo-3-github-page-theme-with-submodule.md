@@ -12,6 +12,45 @@ categories: Hexo
 
 ## npm install 在做什麼
 
+> npm version: 6.14.8
+
+安裝路徑下 `package.json` 中的套件，全部裝在 `node_modules/` 中
+
+以 Hexo 來說，自己加了 cname, git, feed 和 sitemap
+
+```
+{
+  "name": "hexo-site",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "5.3.0"
+  },
+  "dependencies": {
+    "hexo": "^5.0.0",
+    "hexo-generator-cname": "^0.3.0",
+    "hexo-deployer-git": "^0.3.1",
+    "hexo-generator-feed": "^1.2.2",
+    "hexo-generator-sitemap": "^1.1.2",
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-index": "^2.0.0",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-marked": "^3.0.0",
+    "hexo-renderer-stylus": "^2.0.0",
+    "hexo-server": "^2.0.0",
+    "hexo-theme-landscape": "^0.0.3"
+  }
+}
+```
+
 ## submodule
 
 ## 
