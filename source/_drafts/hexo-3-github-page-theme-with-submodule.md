@@ -51,6 +51,12 @@ categories: Hexo
 }
 ```
 
-## submodule
+## 用 git submodule 管理主題
+
+先將想要的主題 fork 到自己的 github，用 submodule 的方式加入 blog 的 repository
+
+```
+git submodule add https://github.com/amao1991/hexo-theme-next.git themes/next
+```
 
 ## 
