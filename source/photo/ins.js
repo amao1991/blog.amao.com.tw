@@ -117,15 +117,15 @@
           var data = res.list[j].arr;
           var liTmpl = "";
           for (var i = 0, len = data.link.length; i < len; i++) {
-            var minSrc = 'https://github.com/amao1991/hexo-gallery/tree/master/min_photos' + data.link[i];
+            var minSrc = 'https://github.com/amao1991/hexo-gallery/tree/master/min_photos/' + data.link[i];
             //var src = 'https://raw.githubusercontent.com/fakeYanss/Blog_Album/master/photos/' + data.link[i];
-            var src = 'https://github.com/amao1991/hexo-gallery/tree/master/photos' + data.link[i];
+            var src = 'https://github.com/amao1991/hexo-gallery/tree/master/photos/' + data.link[i];
             var type = data.type[i];
             var target = src + '.' +type;
             //'?imageMogr2/auto-orient'是七牛云的图片处理参数，如果用github做图床可以去掉这个
-            src = src + (type === 'mp4' ? '.jpg' : '.' + type) + '?imageMogr2/auto-orient';
-            minSrc = minSrc + (type === 'mp4' ? '.jpg' : '.' + type) + '?imageMogr2/auto-orient';
-            type = (type === 'mp4' ? 'video' : 'image')
+            // src = src + (type === 'mp4' ? '.jpg' : '.' + type) + '?imageMogr2/auto-orient';
+            // minSrc = minSrc + (type === 'mp4' ? '.jpg' : '.' + type) + '?imageMogr2/auto-orient';
+            // type = (type === 'mp4' ? 'video' : 'image')
   
             liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
                   <a href="' + src + '" itemprop="contentUrl" data-size="1080x1080" data-type="' + type + '" data-target="' + target + '">\
@@ -174,7 +174,7 @@
       function loadData(success) {
         if (!searchData) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', './data.json?t=' + +new Date(), true);
+          xhr.open('GET', './photo.json?t=' + +new Date(), true);
   
           xhr.onload = function() {
             if (this.status >= 200 && this.status < 300) {
