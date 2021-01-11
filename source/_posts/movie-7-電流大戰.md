@@ -1,6 +1,6 @@
 ---
 title: "Movie #7: 電流大戰 The Current War"
-date: 2021-01-12 00:43:39
+date: 2019-07-22 00:43:39
 tags:
 - movie
 - 電流大戰
