@@ -1,5 +1,12 @@
 ## After clone the blog repository
 
+install usage package
+
+```
+npm install
+npm install -g node-gyp
+```
+
 update submodule theme
 
 ```
