@@ -1,5 +1,5 @@
 ---
-title: "Game #1: Switch - 勇者鬥惡龍XI 壁畫世界．詛咒迴廊 地圖"
+title: "Game #1: 【勇者鬥惡龍XI】壁畫世界．詛咒迴廊 地圖 (Switch)"
 date: 2020-01-31 17:37:45
 tags:
 - game
