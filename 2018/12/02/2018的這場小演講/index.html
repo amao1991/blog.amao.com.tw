@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Verdana:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.elmo.tw","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="2018 年初時，想說來立幾個今年期許要做到的事好了，其中一條是能對外演講一次。接著這條期許很快地就被我拋於腦後，一次公司同事閒聊才突然想起，實習生剛好是輔大 NISRA 某位 T 開頭 0 結尾的社長，便邀請我去演講，完成我的小小心願(?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Speech #1: 2018的這場小演講">
+<meta property="og:url" content="https://blog.elmo.tw/2018/12/02/2018%E7%9A%84%E9%80%99%E5%A0%B4%E5%B0%8F%E6%BC%94%E8%AC%9B/index.html">
+<meta property="og:site_name" content="Elmo&#39;s writeup">
+<meta property="og:description" content="2018 年初時，想說來立幾個今年期許要做到的事好了，其中一條是能對外演講一次。接著這條期許很快地就被我拋於腦後，一次公司同事閒聊才突然想起，實習生剛好是輔大 NISRA 某位 T 開頭 0 結尾的社長，便邀請我去演講，完成我的小小心願(?">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-02T11:13:48.000Z">
+<meta property="article:modified_time" content="2021-05-20T09:36:59.217Z">
+<meta property="article:author" content="Elmo Hsiao">
+<meta property="article:tag" content="speech">
+<meta property="article:tag" content="cryptography">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.elmo.tw/2018/12/02/2018%E7%9A%84%E9%80%99%E5%A0%B4%E5%B0%8F%E6%BC%94%E8%AC%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Speech #1: 2018的這場小演講 | Elmo's writeup</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script src="/js/src/photoswipe.min.js?v="></script>
+  <script src="/js/src/photoswipe-ui-default.min.js?v="></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Elmo's writeup</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.elmo.tw/2018/12/02/2018%E7%9A%84%E9%80%99%E5%A0%B4%E5%B0%8F%E6%BC%94%E8%AC%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Elmo Hsiao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Elmo's writeup">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Speech #1: 2018的這場小演講
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-12-02 19:13:48" itemprop="dateCreated datePublished" datetime="2018-12-02T19:13:48+08:00">2018-12-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Speech/" itemprop="url" rel="index"><span itemprop="name">Speech</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2018/12/02/2018%E7%9A%84%E9%80%99%E5%A0%B4%E5%B0%8F%E6%BC%94%E8%AC%9B/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/12/02/2018的這場小演講/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>2018 年初時，想說來立幾個今年期許要做到的事好了，其中一條是能對外演講一次。接著這條期許很快地就被我拋於腦後，一次公司同事閒聊才突然想起，實習生剛好是輔大 NISRA 某位 T 開頭 0 結尾的社長，便邀請我去演講，完成我的小小心願(?</p>
+<span id="more"></span>
+
+<h2 id="準備階段"><a href="#準備階段" class="headerlink" title="準備階段"></a>準備階段</h2><p>以往的經驗，演講題目都繞著密碼學轉（其實也才講過兩次），本想藉這次機會講點新東西，密碼學是碩班比較常接觸的，工作內容其實跟 Web 滲透測試比較相關，藉由這次來挑戰講點 Web 的東西不是很好嗎www</p>
+<p>以下是我最後還是決定講密碼學的藉口：太久沒做簡報很生疏、關於工作內容從來沒好好整理過、沒有做過 Web 相關的演講分享經驗很茫然、出國回來太爽混太久、Theo 說輔大接觸到的密碼學比較少 Web 比較多、密碼學好久沒碰了複習一下不是很好嗎~~</p>
+<p>對啦我就是個理由伯。</p>
+<p>最後還是講了密碼學，雖然內容大同小異，但還是努力的換句話說、換種方式表達、加了點之前沒講過的（真的只有一點點）</p>
+<p>準備階段因為沒有定義清楚到底是「演講」還是「課程」，投影片做了又刪刪了又做，對我來說，「演講」是一場表演，不用太嚴肅，字不要太多，儘量點到為止；「課程」就是毫無顧忌的我今天就是要來上課，還是會儘量不要做得像教科書一樣，但相較之下會比較嚴肅。</p>
+<p>說真的密碼學要搞得很詼諧真的有點難，（或是我還沒想到方法？）總之每次只要一切入主題，就很難再轉往梗圖或搞笑部分 QQ</p>
+<p>而且我真的會在投影片主題要用哪個好看卡很久，有夠浪費時間= =</p>
+<h2 id="事後心得"><a href="#事後心得" class="headerlink" title="事後心得"></a>事後心得</h2><p>原本想說對象是大學生，可能跟我以前一樣，愛聽不聽不然就是睡覺，但 NISRA 是個神奇的社團，還蠻多人願意晚上社課來聽這不易懂又枯燥的密碼學，而且是真的有認真在聽，幾乎沒有人睡著，筆記也是從頭跟到尾。</p>
+<p>因為自己講話速度還是太快，原本準備要講一個半小時，最後還是在一個小時左右就結束，剩下的時間給大家匿名 QA，想不到發問蠻踴躍的（也可能是因為匿名）</p>
+<p>問題跟課程內容相關聯不大，偶爾有幾個問題再問 CTF crypto 題目解題技巧，或是畢業後密碼學用處大不大，而大部分問題都在問出社會、工作內容、我為何會踏入資安圈等等</p>
+<p>邊回答才發覺，原來大家對我好奇的是另一部分的（這個要拿來分享明明更簡單www），不是我忘記自己已經快 30，而是我忘記他們很小，完全沒出過社會，學校以外的地方對他們來講充滿未知，不像我現在習慣覺得理所當然</p>
+<p>同時，也沒想到雖然自己日子過得不怎麼樣，但多他們這 5 年的社會經驗，默默地也學會跟了解很多我自己覺得是理所當然而他們還不知道的，最後反而覺得 QA 時間最輕鬆自在又開心，知道他們想要聽的，回答他們我知道的</p>
+<p>最後還是覺得，久久沒上台分享，有點生疏了，對於在台上講話的技巧果然還是要多多練習，其實對於這次的演講並沒有到很滿意，也許可以再做得更好</p>
+<p>對於現在工作內容，雖然沒作出多厲害或多難的東西，但我想還是有它的價值在，簡單又有技術含量的東西，反而更親民(? 希望啦…我真的會哪天乖乖撥空好好整理一下XD</p>
+<blockquote>
+<p>話說我明明下週就要考 ECSA 書都還沒念，這最後一個週末的大半夜，我還是放下了書寧可來寫這無聊的心得XD<br>實在是不太喜歡唸書啊…</p>
+</blockquote>
+<p>最後附上個投影片</p>
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/1BBJq8LfO0gDGN" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/ChaoAnHsiao/20181120-nisra" title="20181120 NISRA - 密碼學沒有入門" target="_blank">20181120 NISRA - 密碼學沒有入門</a> </strong> from <strong><a href="https://www.slideshare.net/ChaoAnHsiao" target="_blank">Chao An Hsiao</a></strong> </div>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/speech/" rel="tag"># speech</a>
+              <a href="/tags/cryptography/" rel="tag"># cryptography</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/07/07/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%88%B7%E6%A9%9F%E9%9D%9E%E5%B8%B8%E7%9A%84%E4%B8%8D%E4%B8%8A%E6%89%8B/" rel="prev" title="Android #1: 第一次刷機非常的不上手">
+      <i class="fa fa-chevron-left"></i> Android #1: 第一次刷機非常的不上手
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/02/movie-2-2018movies/" rel="next" title="Movie #2: 2018 閱片紀錄">
+      Movie #2: 2018 閱片紀錄 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%96%E5%82%99%E9%9A%8E%E6%AE%B5"><span class="nav-number">1.</span> <span class="nav-text">準備階段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%BE%8C%E5%BF%83%E5%BE%97"><span class="nav-number">2.</span> <span class="nav-text">事後心得</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Elmo Hsiao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/amao1991" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;amao1991" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:elmo@elmo.tw" title="E-Mail → mailto:elmo@elmo.tw" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/elmootw" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;elmootw" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.behance.net/elmootw" title="Behance → https:&#x2F;&#x2F;www.behance.net&#x2F;elmootw" rel="noopener" target="_blank"><i class="fab fa-behance fa-fw"></i>Behance</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://elmootw.myportfolio.com/" title="https:&#x2F;&#x2F;elmootw.myportfolio.com&#x2F;" rel="noopener" target="_blank">Adobe Portfolio</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elmo Hsiao</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-blog-amao-com-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.elmo.tw/2018/12/02/2018%E7%9A%84%E9%80%99%E5%A0%B4%E5%B0%8F%E6%BC%94%E8%AC%9B/";
+    this.page.identifier = "2018/12/02/2018的這場小演講/";
+    this.page.title = "Speech #1: 2018的這場小演講";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://http-blog-amao-com-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

