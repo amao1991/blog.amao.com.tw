@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Elmo&#39;s writeup</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://blog.elmo.tw/"/>
+  <updated>2021-05-20T09:36:59.292Z</updated>
+  <id>https://blog.elmo.tw/</id>
+  
+  <author>
+    <name>Elmo Hsiao</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Photography #3: 【孕婦寫真】昭玲 &amp; 玉暉</title>
+    <link href="https://blog.elmo.tw/2021/05/16/Photography-3-%E5%AD%95%E5%A9%A6%E5%AF%AB%E7%9C%9F-%E6%98%AD%E7%8E%B2%E7%8E%89%E6%9A%89-%E5%9C%8B%E7%AB%8B%E6%96%B0%E7%AB%B9%E6%95%99%E8%82%B2%E5%A4%A7%E5%AD%B8/"/>
+    <id>https://blog.elmo.tw/2021/05/16/Photography-3-孕婦寫真-昭玲玉暉-國立新竹教育大學/</id>
+    <published>2021-05-16T14:44:00.000Z</published>
+    <updated>2021-05-20T09:36:59.292Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;拍攝日期：2021/04/24 (六)&lt;br&gt;拍攝地點：家中、路邊、國立新竹教育大學&lt;br&gt;使用器材：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fujifilm X-T4&lt;/li&gt;
+&lt;li&gt;Fujifilm XF 16-55mm F2.8&lt;/li&gt;
+&lt;li&gt;Fujifilm XF 56mm F1.2&lt;/li&gt;
+&lt;li&gt;Godox TT685 閃燈&lt;/li&gt;
+&lt;li&gt;Godox LEDP120C 攝影燈&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&quot;/2021/05/16/Photography-3-%E5%AD%95%E5%A9%A6%E5%AF%AB%E7%9C%9F-%E6%98%AD%E7%8E%B2%E7%8E%89%E6%9A%89-%E5%9C%8B%E7%AB%8B%E6%96%B0%E7%AB%B9%E6%95%99%E8%82%B2%E5%A4%A7%E5%AD%B8/ELMO-0180.JPG&quot; class=&quot;slug&quot;&gt;
+    
+    </summary>
+    
+      <category term="Photography" scheme="https://blog.elmo.tw/categories/Photography/"/>
+    
+    
+      <category term="photography" scheme="https://blog.elmo.tw/tags/photography/"/>
+    
+      <category term="孕婦寫真" scheme="https://blog.elmo.tw/tags/%E5%AD%95%E5%A9%A6%E5%AF%AB%E7%9C%9F/"/>
+    
+      <category term="孕婦外拍" scheme="https://blog.elmo.tw/tags/%E5%AD%95%E5%A9%A6%E5%A4%96%E6%8B%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Game #2: 【我的英雄學院：最強英雄】開發工坊 全通關 最少步數 (iOS/Android App)</title>
+    <link href="https://blog.elmo.tw/2021/02/05/Game-2-%E6%89%8B%E9%81%8A-%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2-%E9%96%8B%E7%99%BC%E5%B7%A5%E5%9D%8A/"/>
+    <id>https://blog.elmo.tw/2021/02/05/Game-2-手遊-我的英雄學院-開發工坊/</id>
+    <published>2021-02-05T03:02:17.000Z</published>
+    <updated>2021-05-20T09:36:59.217Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2021/02/05/Game-2-%E6%89%8B%E9%81%8A-%E6%88%91%E7%9A%84%E8%8B%B1%E9%9B%84%E5%AD%B8%E9%99%A2-%E9%96%8B%E7%99%BC%E5%B7%A5%E5%9D%8A/IMG_1605.PNG&quot; class=&quot;slug&quot;&gt;
+
+&lt;p&gt;難得全服第二名來拍張照&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Game" scheme="https://blog.elmo.tw/categories/Game/"/>
+    
+    
+      <category term="game" scheme="https://blog.elmo.tw/tags/game/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Photography #2: Use Adobe Portfilio build my first photo gallery</title>
+    <link href="https://blog.elmo.tw/2021/01/08/photography-2-adobe-portfolio-gallery/"/>
+    <id>https://blog.elmo.tw/2021/01/08/photography-2-adobe-portfolio-gallery/</id>
+    <published>2021-01-08T11:04:25.000Z</published>
+    <updated>2021-05-20T09:36:59.903Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;先來個成果展示 &lt;a href=&quot;https://elmohsiao.myportfolio.com/&quot;&gt;https://elmohsiao.myportfolio.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;拍照拍了有一陣子了，雖然有 NAS 放照片，也有定期在 IG 發文，但前陣子就在想，還是希望能有一個網站可以瀏覽我覺得不錯的照片。壓跨最後一根稻草是意外的婚攝和活動社影，這類型的照片又不太適合在 IG 上發布，便開始尋找能弄成照片及的地方。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Photography" scheme="https://blog.elmo.tw/categories/Photography/"/>
+    
+    
+      <category term="photography" scheme="https://blog.elmo.tw/tags/photography/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo #3: 用 git submodule 管理主題</title>
+    <link href="https://blog.elmo.tw/2020/12/30/hexo-3-github-page-theme-with-submodule/"/>
+    <id>https://blog.elmo.tw/2020/12/30/hexo-3-github-page-theme-with-submodule/</id>
+    <published>2020-12-30T04:45:42.000Z</published>
+    <updated>2021-05-20T09:36:59.676Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有鑒於上次換機器時，重新部署搞了半天，最後又都用些牛頭不對馬尾（當初用 submodule 重新部署時卻直接 clone 下來）的方式處理掉&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://blog.elmo.tw/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="https://blog.elmo.tw/tags/hexo/"/>
+    
+      <category term="github" scheme="https://blog.elmo.tw/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Note #4: 用現實情境來解釋何謂 Single sign-on (SSO)</title>
+    <link href="https://blog.elmo.tw/2020/12/16/note-4-a-story-of-sso/"/>
+    <id>https://blog.elmo.tw/2020/12/16/note-4-a-story-of-sso/</id>
+    <published>2020-12-16T15:56:22.000Z</published>
+    <updated>2021-05-20T09:36:59.683Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前些陣子因為某個客戶家的 Single Sign-on(SSO) 流程亂寫，導致登入機制被繞過&lt;/p&gt;
+&lt;p&gt;在和客戶來回時突然想到一個現實情境可以解釋 Single sign-on 的流程&lt;/p&gt;
+&lt;p&gt;以下正文&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.elmo.tw/categories/Note/"/>
+    
+    
+      <category term="note" scheme="https://blog.elmo.tw/tags/note/"/>
+    
+      <category term="sso" scheme="https://blog.elmo.tw/tags/sso/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo #2: deploy on Github Pages which transfers to new machine</title>
+    <link href="https://blog.elmo.tw/2020/03/17/hexo-2-deploy-on-github-pages-transfer-to-new-machine/"/>
+    <id>https://blog.elmo.tw/2020/03/17/hexo-2-deploy-on-github-pages-transfer-to-new-machine/</id>
+    <published>2020-03-17T08:54:24.000Z</published>
+    <updated>2021-05-20T09:36:59.675Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;The website is deploy on Github Pages by Hexo.&lt;/p&gt;
+&lt;p&gt;It meet some questions when I transfer the source code to new computer as below: &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://blog.elmo.tw/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="https://blog.elmo.tw/tags/hexo/"/>
+    
+      <category term="github" scheme="https://blog.elmo.tw/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Game #1: 【勇者鬥惡龍XI】壁畫世界．詛咒迴廊 地圖 (Switch)</title>
+    <link href="https://blog.elmo.tw/2020/01/31/game-1-switch-dq-maps/"/>
+    <id>https://blog.elmo.tw/2020/01/31/game-1-switch-dq-maps/</id>
+    <published>2020-01-31T09:37:45.000Z</published>
+    <updated>2021-05-20T09:36:59.673Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;勇者鬥惡龍XI 尋覓逝去的時光&lt;/p&gt;
+&lt;p&gt;壁畫世界．詛咒迴廊 地圖 (三層)&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Game" scheme="https://blog.elmo.tw/categories/Game/"/>
+    
+    
+      <category term="game" scheme="https://blog.elmo.tw/tags/game/"/>
+    
+      <category term="switch" scheme="https://blog.elmo.tw/tags/switch/"/>
+    
+      <category term="DQ11" scheme="https://blog.elmo.tw/tags/DQ11/"/>
+    
+      <category term="Dragon Quest" scheme="https://blog.elmo.tw/tags/Dragon-Quest/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Note #3: Read the CD-ROM files in the ESXi shell</title>
+    <link href="https://blog.elmo.tw/2020/01/17/note-3-mount-the-cd-rom-to-the-esxi-shell/"/>
+    <id>https://blog.elmo.tw/2020/01/17/note-3-mount-the-cd-rom-to-the-esxi-shell/</id>
+    <published>2020-01-17T08:19:27.000Z</published>
+    <updated>2021-05-20T09:36:59.682Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;台北影像的底片洗出來都是給光碟片，雖然可以帶 USB 給他存但每次都忘記，而公司唯一一台能讀光碟的機器是裝了 ESXi 的 R610，然後每次都忘記指令。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.elmo.tw/categories/Note/"/>
+    
+    
+      <category term="note" scheme="https://blog.elmo.tw/tags/note/"/>
+    
+      <category term="ESXi" scheme="https://blog.elmo.tw/tags/ESXi/"/>
+    
+      <category term="mount" scheme="https://blog.elmo.tw/tags/mount/"/>
+    
+      <category term="CD-ROM" scheme="https://blog.elmo.tw/tags/CD-ROM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo #1: Spawn failed</title>
+    <link href="https://blog.elmo.tw/2019/12/31/hexo-1-Spawn-failed/"/>
+    <id>https://blog.elmo.tw/2019/12/31/hexo-1-Spawn-failed/</id>
+    <published>2019-12-31T08:21:58.000Z</published>
+    <updated>2021-05-20T09:36:59.675Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;幾個月沒上來要發個文章他就爆了，FINE。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="https://blog.elmo.tw/categories/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="https://blog.elmo.tw/tags/hexo/"/>
+    
+      <category term="github" scheme="https://blog.elmo.tw/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Photography #1: 2019 Review</title>
+    <link href="https://blog.elmo.tw/2019/12/30/photography-1-2019-review/"/>
+    <id>https://blog.elmo.tw/2019/12/30/photography-1-2019-review/</id>
+    <published>2019-12-30T07:46:51.000Z</published>
+    <updated>2021-05-20T09:36:59.684Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;想說 2019 都要結束了，仔細想想今年，比較值得一提的大概也只有拍照這檔事，從本來自己一個人四處晃晃拍，到一度荒廢沒在拍，接著意外結識了一群愛拍照的夥伴。&lt;/p&gt;
+&lt;p&gt;把這一年的照片，每個月都挑一張出來吧。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Photography" scheme="https://blog.elmo.tw/categories/Photography/"/>
+    
+    
+      <category term="photography" scheme="https://blog.elmo.tw/tags/photography/"/>
+    
+      <category term="streetphotography" scheme="https://blog.elmo.tw/tags/streetphotography/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Movie #8: 雙層公寓 Terrace House：輕井澤</title>
+    <link href="https://blog.elmo.tw/2019/08/11/movie-8-%E9%9B%99%E5%B1%A4%E5%85%AC%E5%AF%93/"/>
+    <id>https://blog.elmo.tw/2019/08/11/movie-8-雙層公寓/</id>
+    <published>2019-08-10T16:53:31.000Z</published>
+    <updated>2021-05-20T09:36:59.681Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2019/08/11/movie-8-%E9%9B%99%E5%B1%A4%E5%85%AC%E5%AF%93/terracehouse.jpg&quot; class=&quot;slug&quot;&gt;
+    
+    </summary>
+    
+      <category term="Movie" scheme="https://blog.elmo.tw/categories/Movie/"/>
+    
+    
+      <category term="movie" scheme="https://blog.elmo.tw/tags/movie/"/>
+    
+      <category term="雙層公寓" scheme="https://blog.elmo.tw/tags/%E9%9B%99%E5%B1%A4%E5%85%AC%E5%AF%93/"/>
+    
+      <category term="日本實境節目" scheme="https://blog.elmo.tw/tags/%E6%97%A5%E6%9C%AC%E5%AF%A6%E5%A2%83%E7%AF%80%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Movie #7: 電流大戰 The Current War</title>
+    <link href="https://blog.elmo.tw/2019/07/22/movie-7-%E9%9B%BB%E6%B5%81%E5%A4%A7%E6%88%B0/"/>
+    <id>https://blog.elmo.tw/2019/07/22/movie-7-電流大戰/</id>
+    <published>2019-07-21T16:43:39.000Z</published>
+    <updated>2021-05-20T09:36:59.680Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Movie" scheme="https://blog.elmo.tw/categories/Movie/"/>
+    
+    
+      <category term="movie" scheme="https://blog.elmo.tw/tags/movie/"/>
+    
+      <category term="電流大戰" scheme="https://blog.elmo.tw/tags/%E9%9B%BB%E6%B5%81%E5%A4%A7%E6%88%B0/"/>
+    
+      <category term="美國電影" scheme="https://blog.elmo.tw/tags/%E7%BE%8E%E5%9C%8B%E9%9B%BB%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Movie #6: 寄生上流 기생충</title>
+    <link href="https://blog.elmo.tw/2019/07/14/movie-6-%E5%AF%84%E7%94%9F%E4%B8%8A%E6%B5%81/"/>
+    <id>https://blog.elmo.tw/2019/07/14/movie-6-寄生上流/</id>
+    <published>2019-07-13T16:40:24.000Z</published>
+    <updated>2021-05-20T09:36:59.680Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+      <category term="Movie" scheme="https://blog.elmo.tw/categories/Movie/"/>
+    
+    
+      <category term="movie" scheme="https://blog.elmo.tw/tags/movie/"/>
+    
+      <category term="寄生上流" scheme="https://blog.elmo.tw/tags/%E5%AF%84%E7%94%9F%E4%B8%8A%E6%B5%81/"/>
+    
+      <category term="韓國電影" scheme="https://blog.elmo.tw/tags/%E9%9F%93%E5%9C%8B%E9%9B%BB%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git #1: Specific account for different project in the same computer</title>
+    <link href="https://blog.elmo.tw/2019/07/11/git-1-Specific-account-for-different-project-in-the-same-computer/"/>
+    <id>https://blog.elmo.tw/2019/07/11/git-1-Specific-account-for-different-project-in-the-same-computer/</id>
+    <published>2019-07-11T07:50:18.000Z</published>
+    <updated>2021-05-20T09:36:59.674Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Multiple git account in the same computer&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://blog.elmo.tw/categories/Git/"/>
+    
+    
+      <category term="git" scheme="https://blog.elmo.tw/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Movie #5: 未聞花名, 四月是你的謊言</title>
+    <link href="https://blog.elmo.tw/2019/05/27/movie-5-%E6%9C%AA%E8%81%9E%E8%8A%B1%E5%90%8D-%E5%9B%9B%E6%9C%88%E6%98%AF%E4%BD%A0%E7%9A%84%E8%AC%8A%E8%A8%80/"/>
+    <id>https://blog.elmo.tw/2019/05/27/movie-5-未聞花名-四月是你的謊言/</id>
+    <published>2019-05-26T16:30:57.000Z</published>
+    <updated>2021-05-20T09:36:59.678Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2019/05/27/movie-5-%E6%9C%AA%E8%81%9E%E8%8A%B1%E5%90%8D-%E5%9B%9B%E6%9C%88%E6%98%AF%E4%BD%A0%E7%9A%84%E8%AC%8A%E8%A8%80/5.jpg&quot; class=&quot;slug&quot;&gt;
+
+&lt;img src=&quot;/2019/05/27/movie-5-%E6%9C%AA%E8%81%9E%E8%8A%B1%E5%90%8D-%E5%9B%9B%E6%9C%88%E6%98%AF%E4%BD%A0%E7%9A%84%E8%AC%8A%E8%A8%80/3.jpg&quot; class=&quot;slug&quot;&gt;
+
+&lt;img src=&quot;/2019/05/27/movie-5-%E6%9C%AA%E8%81%9E%E8%8A%B1%E5%90%8D-%E5%9B%9B%E6%9C%88%E6%98%AF%E4%BD%A0%E7%9A%84%E8%AC%8A%E8%A8%80/1.jpg&quot; class=&quot;slug&quot;&gt;
+    
+    </summary>
+    
+      <category term="Movie" scheme="https://blog.elmo.tw/categories/Movie/"/>
+    
+    
+      <category term="movie" scheme="https://blog.elmo.tw/tags/movie/"/>
+    
+      <category term="未聞花名" scheme="https://blog.elmo.tw/tags/%E6%9C%AA%E8%81%9E%E8%8A%B1%E5%90%8D/"/>
+    
+      <category term="四月是你的謊言" scheme="https://blog.elmo.tw/tags/%E5%9B%9B%E6%9C%88%E6%98%AF%E4%BD%A0%E7%9A%84%E8%AC%8A%E8%A8%80/"/>
+    
+      <category term="日本動畫" scheme="https://blog.elmo.tw/tags/%E6%97%A5%E6%9C%AC%E5%8B%95%E7%95%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Movie #4: 調音師 L&#39;accordeur</title>
+    <link href="https://blog.elmo.tw/2019/05/24/movie-4-%E8%AA%BF%E9%9F%B3%E5%B8%AB-L-accordeur/"/>
+    <id>https://blog.elmo.tw/2019/05/24/movie-4-調音師-L-accordeur/</id>
+    <published>2019-05-24T15:48:50.000Z</published>
+    <updated>2021-05-20T09:36:59.678Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2019/05/24/movie-4-%E8%AA%BF%E9%9F%B3%E5%B8%AB-L-accordeur/accordeur.jpg&quot; class=&quot;slug&quot;&gt;
+    
+    </summary>
+    
+      <category term="Movie" scheme="https://blog.elmo.tw/categories/Movie/"/>
+    
+    
+      <category term="movie" scheme="https://blog.elmo.tw/tags/movie/"/>
+    
+      <category term="調音師" scheme="https://blog.elmo.tw/tags/%E8%AA%BF%E9%9F%B3%E5%B8%AB/"/>
+    
+      <category term="法國微電影" scheme="https://blog.elmo.tw/tags/%E6%B3%95%E5%9C%8B%E5%BE%AE%E9%9B%BB%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Note #2: 惡補物件導向基本知識</title>
+    <link href="https://blog.elmo.tw/2019/05/09/note-2-basic-oop/"/>
+    <id>https://blog.elmo.tw/2019/05/09/note-2-basic-oop/</id>
+    <published>2019-05-09T02:44:46.000Z</published>
+    <updated>2021-05-20T09:36:59.682Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hummmm…這欠債的部分…被截圖存證了只好認命連在火車上都拿出來敲敲打打（話說在火車上掏出電腦別有一番風味呢）&lt;br&gt;此篇為上篇在理解 PHP Deserialization 時，除了智商問題、天份問題，還缺乏很多物件導向程式設計 (Object-oriented programming, OOP) 的基礎知識，筆記於此。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.elmo.tw/categories/Note/"/>
+    
+    
+      <category term="note" scheme="https://blog.elmo.tw/tags/note/"/>
+    
+      <category term="programming" scheme="https://blog.elmo.tw/tags/programming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Note #1: PHP Deserialization </title>
+    <link href="https://blog.elmo.tw/2019/05/02/note-1-php-deserializtion-nisra-training/"/>
+    <id>https://blog.elmo.tw/2019/05/02/note-1-php-deserializtion-nisra-training/</id>
+    <published>2019-05-01T16:58:53.000Z</published>
+    <updated>2021-05-20T09:36:59.682Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is the training about PHP Deserialization which created by somebody whos sitting next to me…&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="https://blog.elmo.tw/categories/Note/"/>
+    
+    
+      <category term="Note" scheme="https://blog.elmo.tw/tags/Note/"/>
+    
+      <category term="vulnerability" scheme="https://blog.elmo.tw/tags/vulnerability/"/>
+    
+      <category term="php" scheme="https://blog.elmo.tw/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Movie #3: Hannibal S2.EP11</title>
+    <link href="https://blog.elmo.tw/2019/03/25/movie-3-hannibal/"/>
+    <id>https://blog.elmo.tw/2019/03/25/movie-3-hannibal/</id>
+    <published>2019-03-25T14:52:32.000Z</published>
+    <updated>2021-05-20T09:36:59.677Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;序&quot;&gt;&lt;a href=&quot;#序&quot; class=&quot;headerlink&quot; title=&quot;序&quot;&gt;&lt;/a&gt;序&lt;/h2&gt;&lt;p&gt;不喜歡文章太短湊字數用的&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Movie" scheme="https://blog.elmo.tw/categories/Movie/"/>
+    
+    
+      <category term="movie" scheme="https://blog.elmo.tw/tags/movie/"/>
+    
+      <category term="Hannibal" scheme="https://blog.elmo.tw/tags/Hannibal/"/>
+    
+      <category term="Series" scheme="https://blog.elmo.tw/tags/Series/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android #2: Reverse APK</title>
+    <link href="https://blog.elmo.tw/2019/03/12/reverse-apk-1/"/>
+    <id>https://blog.elmo.tw/2019/03/12/reverse-apk-1/</id>
+    <published>2019-03-12T08:48:09.000Z</published>
+    <updated>2021-05-20T09:36:59.903Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前情提要&quot;&gt;&lt;a href=&quot;#前情提要&quot; class=&quot;headerlink&quot; title=&quot;前情提要&quot;&gt;&lt;/a&gt;前情提要&lt;/h2&gt;&lt;p&gt;無聊下載到一個奮 game，玩一玩開始覺得有機會 reverse 做修改，就這樣。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="https://blog.elmo.tw/categories/Android/"/>
+    
+    
+      <category term="android" scheme="https://blog.elmo.tw/tags/android/"/>
+    
+      <category term="reverse" scheme="https://blog.elmo.tw/tags/reverse/"/>
+    
+      <category term="apk" scheme="https://blog.elmo.tw/tags/apk/"/>
+    
+  </entry>
+  
+</feed>
